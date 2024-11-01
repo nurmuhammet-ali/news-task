@@ -6,3 +6,4 @@
 git clone https://github.com/nurmuhammet-ali/news-task news
 cd news
 composer install
+cp .env.example .env
