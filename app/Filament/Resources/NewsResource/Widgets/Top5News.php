@@ -13,10 +13,7 @@ class Top5News extends BaseWidget
     {
         $stats = [];
 
-        array_push(
-            array: $stats,
-            values: Stat::make('Top news', News::query()->count())->icon('heroicon-o-newspaper')
-        );
+        array_push($stats, Stat::make('Top news', News::query()->count())->icon('heroicon-o-newspaper'));
 
         News::select('author', DB::raw('COUNT(*) as news_count'))
             ->groupBy('author')
@@ -25,12 +22,12 @@ class Top5News extends BaseWidget
             ->get()
             ->each(function ($item) use (&$stats) {
                 array_push(
-                    array: $stats,
-                    values: Stat::make(
-                        label: $item['author'] . ' with news',
+                    $stats,
+                    Stat::make(
+                        label: $item['author'].' with news',
                         value: $item['news_count'],
                     )->icon('heroicon-o-user')
-            );
+                );
             });
 
         return $stats;
