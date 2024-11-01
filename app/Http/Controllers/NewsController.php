@@ -17,7 +17,10 @@ class NewsController extends Controller
         return view('news.create');
     }
 
-    public function store(Request $request)
+    /**
+     * Store news
+     */
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],

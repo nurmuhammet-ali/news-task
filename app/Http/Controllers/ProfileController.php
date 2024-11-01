@@ -19,8 +19,6 @@ class ProfileController extends Controller
 
     /**
      * Update profile
-     *
-     * @param  Request $request
      */
     public function update(Request $request): RedirectResponse
     {
