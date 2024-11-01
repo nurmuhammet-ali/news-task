@@ -33,27 +33,28 @@
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
-      <li><a>Item 1</a></li>
-      <li>
-        <details>
-          <summary>Parent</summary>
-          <ul class="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </details>
-      </li>
-      <li><a>Item 3</a></li>
+
     </ul>
   </div>
   <div class="navbar-end">
     @guest
         <a href="{{ route('login') }}" class="btn">Войти</a>
     @else
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
+        <ul class="menu menu-horizontal px-1">
+            <li>
+                <details>
+                  <summary>{{ auth()->user()->name }}</summary>
+                  <ul class="bg-base-100 rounded-t-none p-2" style="width: -webkit-fill-available;">
+                    <li><a class="link" href="{{ route('profile') }}">My Profile</a></li>
+                    <li><a class="link" href="{{ route('news.store') }}">Add news</a></li>
+                    <li><a class="link" onclick="event.preventDefault();document.getElementById('logout-form').submit()">Logout</a></li>
+                  </ul>
+                </details>
+            </li>
+        </ul>
 
-            <input type="submit" class="btn" value="Logout"></button>
+        <form action="{{ route('logout') }}" method="POST" id="logout-form">
+            @csrf
         </form>
     @endguest
   </div>
