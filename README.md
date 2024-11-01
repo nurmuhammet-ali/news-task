@@ -5,5 +5,13 @@
 
 git clone https://github.com/nurmuhammet-ali/news-task news
 cd news
+
 composer install
+
 cp .env.example .env
+
+php artisan key:generate
+
+touch database/database.sqlite
+
+php artisan migrate --seed
